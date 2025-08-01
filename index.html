@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zach - Hack Club Founder</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background particles */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Typewriter effect for greeting */
+        .greeting {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 4rem 0 2rem;
+            text-align: center;
+            border-right: 3px solid #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typewriter 2s steps(16) 1s both, blink 0.75s step-end infinite;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        @keyframes blink {
+            0%, 50% {
+                border-color: #fff;
+            }
+            51%, 100% {
+                border-color: transparent;
+            }
+        }
+        
+        /* Main content card */
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 1s ease-out 3s both;
+        }
+        
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .intro-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(168, 237, 234, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(168, 237, 234, 0.6));
+            }
+        }
+        
+        .mission-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4s both;
+        }
+        
+        .personal-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.5s both;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Contact section */
+        .contact-section {
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 5s both;
+        }
+        
+        .email-link {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .email-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .email-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .email-link:hover:before {
+            left: 100%;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 5.5s both;
+        }
+        
+        .footer-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        .signature {
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .greeting {
+                font-size: 2rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .intro-text {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+        
+        /* Hack Club branding colors */
+        .hack-club {
+            background: linear-gradient(45deg, #ec3750, #ff8c37);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+        
+        .hack-club-link {
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .hack-club-link:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 2px 8px rgba(236, 55, 80, 0.4));
+        }
+        
+        .hack-club-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ec3750, #ff8c37);
+            transition: width 0.3s ease;
+        }
+        
+        .hack-club-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Pulse animation for important elements */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="particles"></div>
+    
+    <div class="container">
+        <h1 class="greeting" id="greeting">Hey there! I'm Zach!</h1>
+        
+        <div class="content-card">
+            <p class="intro-text">
+                I'm the founder of <a href="https://summer.hackclub.com/" target="_blank" class="highlight hack-club hack-club-link">Hack Club</a>, where our mission is to help as many teenagers as possible fall in love with computers and electronics.
+            </p>
+            
+            <p class="mission-text">
+                Growing up, I was incredibly lucky to discover computers as tools for creation. Learning to code completely changed my life, and made me feel like I had finally found a tool to express myself.
+            </p>
+            
+            <p class="personal-text">
+                Now, I'm lucky enough to help others on that same journey.
+            </p>
+            
+            <div class="contact-section">
+                <p style="margin-bottom: 1rem; font-size: 1.1rem;">My email is:</p>
+                <a href="mailto:zach@zachlatta.com" class="email-link pulse">
+                    zach@zachlatta.com
+                </a>
+                <p style="margin-top: 1rem; opacity: 0.9;">Feel free to reach out!</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-text">The lack of CSS is intentional.</p>
+            <p class="signature">- Zach</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 5 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            
+            document.getElementById('particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 20000);
+        }
+        
+        // Create particles periodically
+        setInterval(createParticle, 300);
+        
+        // Initial particles
+        for(let i = 0; i < 15; i++) {
+            setTimeout(createParticle, i * 200);
+        }
+        
+        // Add scroll animations
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        
+        // Stop typewriter cursor blinking after animation
+        setTimeout(() => {
+            document.getElementById('greeting').style.borderRight = 'none';
+        }, 6000);
+    </script>
+</body>
+</html>
